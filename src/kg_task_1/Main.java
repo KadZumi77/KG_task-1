@@ -1,12 +1,24 @@
 package kg_task_1;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        MainWindow mw = new MainWindow();
-        mw.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        mw.setSize(800, 600);
-        mw.setVisible(true);
+
+        MainWindow startFrame = new MainWindow();
+
+        int centerX = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 50);
+        int centerY = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 50);
+
+
+        startFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        startFrame.setLocationRelativeTo(null); //положение фрейма по центру
+        startFrame.pack(); //размер фрейма как и размер его компонентов
+        startFrame.setLocation(centerX, centerY);
+
+        startFrame.setVisible(true);
+
+        startFrame.setSize(1000, 600);
     }
 }
