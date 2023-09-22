@@ -16,7 +16,10 @@ public class Back {
         g.fillOval(400, 100, 230, 27);
 
         g.setColor(Color.white);
-        g.fillOval(10, 30, 200, 50);
+        g.fillOval(310, 20, 80, 20);
+
+        g.setColor(Color.white);
+        g.fillOval(10, 30, 200, 60);
 
         g.setPaint(new Color(114, 123, 141));
         g.fillOval(900, 50, 200, 30);
