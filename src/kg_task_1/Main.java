@@ -5,16 +5,13 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-
         MainWindow startFrame = new MainWindow();
-
         int centerX = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 50);
         int centerY = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 50);
 
 
         startFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         startFrame.setLocationRelativeTo(null); //положение фрейма по центру
-        startFrame.pack(); //размер фрейма как и размер его компонентов
         startFrame.setLocation(centerX, centerY);
 
         startFrame.setVisible(true);
