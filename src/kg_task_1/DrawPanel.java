@@ -35,14 +35,9 @@ public class DrawPanel extends JPanel{
         character = new Character(0, 0);
         this.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                character.setX(character.getX()+2);
-                repaint();
-            }
-
-            @Override
             public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
+                character.setX(character.getX()+4);
+                repaint();
             }
         });
     }
@@ -63,23 +58,6 @@ public class DrawPanel extends JPanel{
     }
 
 
-
-    /*public void DrawPanel() {
-        character = new Character(0, 0);
-
-        this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                character.setX(character.getX() + 1);
-                repaint();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-            }
-        });
-    }*/
 
     @Override
     public void paint(Graphics gr) {
@@ -111,17 +89,11 @@ public class DrawPanel extends JPanel{
         sun = new Sun(200, 100, 50, 70, 15, Color.YELLOW);
         sun.draw(g);
 
+        Tablo tablo = new Tablo();
+        tablo.draw(g, partWidth, partHeight);
+
 
     }
 
-
-
-    /*@Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode()==KeyEvent.VK_RIGHT){
-            character.setX(character.getX()+2);
-            repaint();
-        }
-    }*/
 
 }
