@@ -11,25 +11,23 @@ import java.util.TimerTask;
 
 public class DrawPanel extends JPanel {
 
-    private int width=1000;
+    private int width =1000;
     private int height = 600;
     private int partWidth;
     private int partHeight;
-    private Back background;
-    private Ground ground;
-    private Mount1 mountain1;
-    private Mount2 mountain2;
-    private Sun sun;
-    private Tablo tablo;
-    private Character character;
-    private Dragon dragon;
+    private final Back background;
+    private final Ground ground;
+    private final Mount1 mountain1;
+    private final Mount2 mountain2;
+    private final Sun sun;
+    private final Tablo tablo;
+    private final Character character;
+    private final Dragon dragon;
     private boolean dragonTop = false;
     private int dragonAmplitude = 0;
 
     private boolean isMove = false;
     private boolean backMove = false;
-    private int i = 0;
-    private int b = 120;
 
     public DrawPanel() {
         TimerTask timerTask = new TimerTask() {
@@ -91,7 +89,7 @@ public class DrawPanel extends JPanel {
             }
         if (backMove && character.getX()>-100){
             character.setX(character.getX() - 2);
-            b-=2;}
+            }
 
         if (dragonTop) {
             dragonAmplitude++;
