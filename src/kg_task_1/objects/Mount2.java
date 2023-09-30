@@ -5,7 +5,17 @@ import kg_task_1.Utils;
 import java.awt.*;
 
 public class Mount2 {
-    public void draw(Graphics2D g, int width, int height, int startY) {
+    private int width;
+    private int height;
+    private int startY;
+
+    public Mount2(int width, int height, int startY) {
+
+        this.width = width;
+        this.height = height;
+        this.startY = startY;
+    }
+    public void draw(Graphics2D g) {
         int[] x = {-10, 0, 220, 375, 500, 650, 850, 940, 1100, 1300, 1300};
                  //-10, 0, 110, 270, 360, 530, 630, 675, 880, 990, 1160, 1300, 1300
         int[] y = {600, startY+380, startY + 240, startY + 380, startY +290, startY +450,

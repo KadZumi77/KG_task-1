@@ -6,7 +6,17 @@ import java.awt.*;
 import java.util.List;
 
 public class Mount1 {
-    public void draw(Graphics2D g, int width, int height, int startY) {
+    private int width;
+    private int height;
+    private int startY;
+
+    public Mount1(int width, int height, int startY) {
+
+        this.width = width;
+        this.height = height;
+        this.startY = startY;
+    }
+    public void draw(Graphics2D g) {
         int[] x = {-10, 0, 110, 270, 360, 530, 630, 675, 880, 990, 1160, 1300, 1300};
                 //-10, 0, 140, 300, 400, 570, 630, 670, 860, 1000, 1300, 1500};
         int[] y = {600, startY+300, startY + 180, startY + 360, startY +210, startY +385,

@@ -9,17 +9,27 @@ import java.awt.event.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class DrawPanel extends JPanel{
+public class DrawPanel extends JPanel {
 
+    private int width=1000;
+    private int height = 600;
     private int partWidth;
     private int partHeight;
-
+    private Back background;
+    private Ground ground;
+    private Mount1 mountain1;
+    private Mount2 mountain2;
     private Sun sun;
-
+    private Tablo tablo;
     private Character character;
-    private int dragonY;
-    private boolean dragonTop;
-    private int dragonAmplitude;
+    private Dragon dragon;
+    private boolean dragonTop = false;
+    private int dragonAmplitude = 0;
+
+    private boolean isMove = false;
+    private boolean backMove = false;
+    private int i = 0;
+    private int b = 120;
 
     public DrawPanel() {
         TimerTask timerTask = new TimerTask() {
@@ -30,33 +40,72 @@ public class DrawPanel extends JPanel{
             }
         };
         Timer timer = new Timer();
-        timer.schedule(timerTask, 0, 1000 / 60);
+        timer.schedule(timerTask, 2, 1000 / 60);
 
-        character = new Character(0, 0);
-        this.addMouseListener(new MouseAdapter() {
+        background = new Back(1000, 600);
+        ground = new Ground(1000, 400);
+        mountain1 = new Mount1(1000, 500, partHeight);
+        mountain2 = new Mount2(1000, 500, partHeight);
+        dragon = new Dragon(partWidth, partHeight+40);
+        sun = new Sun(200, 100, 50, 70, 15, Color.YELLOW);
+        tablo = new Tablo(partWidth, partHeight);
+
+        character = new Character(partWidth, partHeight);
+
+        MyKey listener = new MyKey();
+        addKeyListener(listener);
+        setFocusable(true);
+        /*this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                character.setX(character.getX()+4);
-                repaint();
+                //character.setX(character.getX()+4);
+                //repaint();
+                isMove = true;
             }
-        });
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                isMove = false;
+            }
+        });*/
+
+        /*this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+                    isMove=true;
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                isMove = false;
+            }
+        });*/
+
     }
 
     private void update() {
+        if (isMove && character.getX()<width-300){
+            character.setX(character.getX() + 2);
+            }
+        if (backMove && character.getX()>-100){
+            character.setX(character.getX() - 2);
+            b-=2;}
+
         if (dragonTop) {
             dragonAmplitude++;
-            if (dragonAmplitude == 60) {
+            if (dragonAmplitude == 50) {
                 dragonTop = false;
             }
         } else {
             dragonAmplitude--;
-            if (dragonAmplitude == -60) {
+            if (dragonAmplitude == -50) {
                 dragonTop = true;
             }
         }
-        dragonY = (int) (20 * Math.sin(dragonAmplitude * 0.01f));
+        dragon.setStartY((dragon.getStartY() + (int) (5 * Math.sin(dragonAmplitude * 0.01f))));
     }
-
 
 
     @Override
@@ -64,36 +113,48 @@ public class DrawPanel extends JPanel{
         super.paint(gr);
         Graphics2D g = (Graphics2D) gr;
 
-        partWidth = getWidth() / 100;
-        partHeight = getHeight() / 100;
+        background.draw(g);
 
-        Back background = new Back();
-        background.draw(g, getWidth(), getHeight());
+        mountain1.draw(g);
 
+        mountain2.draw(g);
 
-        Mount1 mountain1 = new Mount1();
-        mountain1.draw(g, getWidth(), getHeight(), partHeight);
+        dragon.draw(g);
 
-        Mount2 mountain2 = new Mount2();
-        mountain2.draw(g, getWidth(), getHeight(), partHeight);
+        ground.draw(g);
 
-        Dragon dragon = new Dragon();
-        dragon.draw(g, partWidth , dragonY);
-
-        Ground ground = new Ground();
-        ground.draw(g, getWidth(), getHeight());
-
-        //Character character = new Character(0, 0);
         character.draw(g);
 
-        sun = new Sun(200, 100, 50, 70, 15, Color.YELLOW);
         sun.draw(g);
 
-        Tablo tablo = new Tablo();
-        tablo.draw(g, partWidth, partHeight);
+        tablo.draw(g);
 
 
     }
 
+    private class MyKey implements KeyListener {
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+                isMove = true;
+
+            }
+            if(e.getKeyCode()==KeyEvent.VK_LEFT){
+                backMove = true;
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            isMove = false;
+            backMove = false;
+        }
+    }
 
 }

@@ -11,10 +11,11 @@ public class Main {
 
 
         startFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        startFrame.setLocationRelativeTo(null); //положение фрейма по центру
+        //startFrame.setLocationRelativeTo(null); //положение фрейма по центру
         startFrame.setLocation(centerX, centerY);
 
         startFrame.setVisible(true);
+        startFrame.setResizable(false);
 
         startFrame.setSize(1000, 600);
     }

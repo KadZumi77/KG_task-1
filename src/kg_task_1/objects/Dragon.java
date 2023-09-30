@@ -3,7 +3,30 @@ package kg_task_1.objects;
 import java.awt.*;
 
 public class Dragon {
-    public void draw(Graphics2D g, int startX, int startY) {
+    private int startX;
+
+    public void setStartX(int startX) {
+        this.startX = startX;
+    }
+
+    public void setStartY(int startY) {
+        this.startY = startY;
+    }
+
+    public int getStartX() {
+        return startX;
+    }
+
+    public int getStartY() {
+        return startY;
+    }
+
+    private int startY;
+    public Dragon(int startX, int startY){
+        this.startX = startX;
+        this.startY = startY;
+    }
+    public void draw(Graphics2D g) {
 
         int[] x = {startX +646, startX +679, startX +726, startX +753, startX +751, startX +757, startX +761, startX +784, startX +806,
                 startX +799, startX +831, startX +825, startX +849, startX +875, startX +855, startX +848, startX + 848, startX +857, startX +837,

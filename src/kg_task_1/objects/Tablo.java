@@ -3,7 +3,14 @@ package kg_task_1.objects;
 import java.awt.*;
 
 public class Tablo {
-    public void draw(Graphics2D g, int startX, int startY) {
+    private int startX;
+    private int startY;
+
+    public Tablo(int startX, int startY) {
+        this.startX=startX;
+        this.startY=startY;
+    }
+    public void draw(Graphics2D g) {
         g.setPaint(new Color(79, 32, 5));
         g.fillRect(830, 480, 20, 70);
 
